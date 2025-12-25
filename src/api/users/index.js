@@ -1,11 +1,9 @@
 const UsersHandler = require('./handler');
 const routes = require('./routes');
-const UsersValidator = require('../../validator/users');
-
 module.exports = {
   name: 'users',
-  register: async (server) => {
-    const handler = new UsersHandler(UsersValidator);
+  register: async (server, options) => {
+    const handler = new UsersHandler(options.service, options.validator);
     server.route(routes(handler));
   },
 };
