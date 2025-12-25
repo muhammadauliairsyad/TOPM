@@ -30,12 +30,29 @@ class SongsService {
     return result.rows[0].id;
   }
 
-  async getSongs() {
+  async getSongs({ title, performer } = {}) {
+    const conditions = [];
+    const values = [];
+
+    if (title) {
+      values.push(`%${title}%`);
+      conditions.push(`title ILIKE $${values.length}`);
+    }
+
+    if (performer) {
+      values.push(`%${performer}%`);
+      conditions.push(`performer ILIKE $${values.length}`);
+    }
+
+    const whereClause = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+
     const result = await pool.query({
       text: `
         SELECT id, title, performer
         FROM songs
+        ${whereClause}
       `,
+      values,
     });
 
     return result.rows;

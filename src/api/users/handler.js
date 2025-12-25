@@ -1,5 +1,3 @@
-const { nanoid } = require('nanoid');
-
 class UsersHandler {
   constructor(service, validator) {
     this._service = service;
@@ -14,26 +12,8 @@ class UsersHandler {
 
     const { username, password, fullname } = request.payload;
 
-    // Cek user sudah ada (berdasarkan username)
-    const isExisting = await this._service.isUsernameTaken(username);
-    if (isExisting) {
-      return h
-        .response({
-          status: 'fail',
-          message: 'Gagal menambahkan user. Username sudah digunakan',
-        })
-        .code(400);
-    }
-
-    const userId = `user-${nanoid(16)}`;
-
     // Simpan user baru
-    await this._service.addUser({
-      userId,
-      username,
-      password,
-      fullname,
-    });
+    const userId = await this._service.addUser({ username, password, fullname });
 
     return h
       .response({
