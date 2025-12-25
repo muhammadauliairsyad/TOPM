@@ -35,8 +35,9 @@ class AlbumsHandler {
         album: {
           id: album.id,
           name: album.name,
-          year: album.year,          // kalau service kamu return year
-          coverUrl: album.coverUrl || album.cover, // sesuaikan field di service
+          year: album.year,
+          coverUrl: album.coverUrl,
+          songs: album.songs,
         },
       },
     };
