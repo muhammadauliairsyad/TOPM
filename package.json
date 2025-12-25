@@ -1,0 +1,25 @@
+{
+  "name": "opmv3",
+  "version": "1.0.0",
+  "description": "OpenMusic API v3",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "migrate": "node-pg-migrate"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "@hapi/inert": "^7.1.0",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/jwt": "^2.1.2",
+    "amqplib": "^0.10.3",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^16.6.1",
+    "nanoid": "^3.3.4",
+    "pg": "^8.11.5",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "node-pg-migrate": "^7.0.0"
+  }
+}
