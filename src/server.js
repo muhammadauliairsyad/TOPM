@@ -35,6 +35,7 @@ const UserAlbumLikesService = require('./services/postgres/UserAlbumLikesService
 const ProducerService = require('./services/rabbitmq/ProducerService');
 const CacheService = require('./services/redis/CacheService');
 const StorageService = require('./services/storage/StorageService');
+const UsersValidator = require('./validator/users');
 
 // token manager
 const TokenManager = require('./tokenize/TokenManager');
@@ -109,7 +110,7 @@ const init = async () => {
     },
     {
       plugin: users,
-      options: { service: usersService },
+      options: { service: usersService, validator: UsersValidator },
     },
     {
       plugin: authentications,
